@@ -1,0 +1,23 @@
+// Prisma Schema for Resume ATS Checker
+// Run `npx prisma migrate dev` after providing your DATABASE_URL
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  password_hash String?
+  name          String
+  google_id     String?
+  avatar_url    String?
+  created_at    DateTime @default(now())
+
+  @@map("users")
+}
