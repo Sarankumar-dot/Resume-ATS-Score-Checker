@@ -125,3 +125,4 @@ curl http://localhost:5000/api/health
 | **7** | Deployment |
 | **8** | Stretch goals (LLM rewrites, multi-JD, dark mode) |
 # Resume-ATS-Score-Checker
+# Resume-ATS-Score-Checker
