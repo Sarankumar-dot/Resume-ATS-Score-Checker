@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - ResumeFit</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "surface-container-high": "#e7e8e9",
+                        "surface": "#f8f9fa",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c7c4d8",
+                        "on-surface-variant": "#464555",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "on-tertiary-container": "#67f4b7",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-tertiary-fixed": "#002113",
+                        "secondary-fixed": "#d9e3f6",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary-container": "#596373",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "outline": "#777587",
+                        "surface-bright": "#f8f9fa",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-container": "#006e4b",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary": "#005338",
+                        "surface-tint": "#4d44e3",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "primary": "#3525cd",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-fixed": "#0f0069",
+                        "inverse-primary": "#c3c0ff",
+                        "secondary": "#555f6f",
+                        "primary-fixed": "#e2dfff",
+                        "on-background": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "background": "#f8f9fa",
+                        "tertiary-fixed": "#6ffbbe",
+                        "primary-container": "#4f46e5",
+                        "on-primary-container": "#dad7ff",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d6e0f3",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "max-width": "1200px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "base": "4px",
+                        "xl": "48px",
+                        "margin-desktop": "auto",
+                        "lg": "24px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface flex items-center justify-center min-h-screen px-margin-mobile md:px-margin-desktop text-on-surface">
+<!-- Main Content Canvas (Navigation suppressed per Linear/Transactional rule) -->
+<main class="w-full max-w-md">
+<!-- Login Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-8 md:p-10 flex flex-col items-center">
+<!-- Brand & Header -->
+<div class="text-center mb-8 w-full">
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight mb-2">ResumeFit</h1>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Welcome back</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Sign in to manage your professional identity.</p>
+</div>
+<!-- Login Form -->
+<form action="#" class="w-full flex flex-col gap-6">
+<!-- Email Field -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="email">Email address</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-lowest transition-shadow" id="email" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface" for="password">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline focus:outline-none" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-lowest transition-shadow" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-3 rounded-md flex items-center justify-center gap-2 hover:bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-lowest mt-2" type="submit">
+                    Log in
+                </button>
+</form>
+<!-- Divider -->
+<div class="w-full flex items-center my-8">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">OR</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Secondary Action (Google) -->
+<button class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md py-3 rounded-md flex items-center justify-center gap-3 hover:bg-surface-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-lowest" type="button">
+<img alt="" class="w-5 h-5 object-contain" data-alt="A clean, minimalist vector rendering of the Google 'G' logo icon, set against a pure white background. The icon uses standard corporate colors but is styled to fit within a modern, professional light-mode software application context. High resolution, flat design style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNQJT7a1aSqtPqnKzVbPsQTZFPWOUs8ToVeBKaDSrDizoA1kV4gsc_lN9UenOt43GG2eQ0--plV9WHAAgayw9-2cTMiM8JHo4IUuN80tbN7QRF39DJFGaXuDeO-4PKumzKhqtlZSKejiQ-pDy-NE2GSlCMYxDW230rene3riwJ_AUql50qrUA9h9KXCJcTEO5vAscoJpSULS9fi5bN9aZ_p9EuypkurW-mjY-lljG5BLrF2Yc98MoC"/>
+                Continue with Google
+            </button>
+</div>
+<!-- Footer Link -->
+<p class="text-center mt-8 font-body-sm text-body-sm text-on-surface-variant">
+            Don't have an account? 
+            <a class="font-label-md text-label-md text-primary hover:underline focus:outline-none ml-1" href="#">Sign up</a>
+</p>
+</main>
+</body></html>

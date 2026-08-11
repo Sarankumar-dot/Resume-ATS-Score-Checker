@@ -2,8 +2,9 @@
 // Run `npx prisma migrate dev` after providing your DATABASE_URL
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
@@ -19,5 +20,28 @@ model User {
   avatar_url    String?
   created_at    DateTime @default(now())
 
+  refresh_tokens RefreshToken[]
+
   @@map("users")
 }
+
+model RefreshToken {
+  id             String    @id @default(uuid())
+  user_id        String
+  token_hash     String
+  expires_at     DateTime
+  created_at     DateTime  @default(now())
+  // Grace-window rotation: instead of hard-deleting the old token immediately,
+  // mark it superseded and store the new token hash. For ~10s after rotation,
+  // a duplicate refresh call using the old hash returns the same new token pair
+  // instead of a 401. This prevents StrictMode / race-condition failures.
+  superseded_at  DateTime?
+  superseded_by  String?   // new token_hash that replaced this one
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([token_hash])
+  @@map("refresh_tokens")
+}
+

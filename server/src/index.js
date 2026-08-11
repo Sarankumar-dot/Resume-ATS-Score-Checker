@@ -2,6 +2,7 @@
 
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import swaggerUi from "swagger-ui-express";
 
 import env from "./config/env.js";
@@ -10,6 +11,7 @@ import swaggerSpec from "./config/swagger.js";
 
 // Routes
 import healthRoutes from "./routes/health.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
 
@@ -17,12 +19,14 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // --------------- Swagger Docs ---------------
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // --------------- API Routes ---------------
 app.use("/api", healthRoutes);
+app.use("/api", authRoutes);
 
 // --------------- 404 Handler ---------------
 app.use((req, res) => {

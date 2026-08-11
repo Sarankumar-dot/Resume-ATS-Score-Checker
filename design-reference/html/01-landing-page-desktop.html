@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ResumeFit - ATS Resume Checker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#191c1d",
+                    "on-tertiary-container": "#67f4b7",
+                    "secondary-fixed": "#d9e3f6",
+                    "outline-variant": "#c7c4d8",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f8f9fa",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "inverse-primary": "#c3c0ff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "primary": "#3525cd",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#191c1d",
+                    "on-error-container": "#93000a",
+                    "outline": "#777587",
+                    "secondary": "#555f6f",
+                    "on-surface-variant": "#464555",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#0f0069",
+                    "surface-bright": "#f8f9fa",
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary-container": "#006e4b",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary-container": "#dad7ff",
+                    "surface-container-low": "#f3f4f5",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#d9dadb",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "secondary-container": "#d6e0f3",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#4d44e3",
+                    "on-secondary-container": "#596373",
+                    "surface-variant": "#e1e3e4",
+                    "surface-container": "#edeeef",
+                    "surface-container-highest": "#e1e3e4",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#2e3132",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-container-high": "#e7e8e9",
+                    "primary-fixed": "#e2dfff",
+                    "primary-container": "#4f46e5",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "surface": "#f8f9fa",
+                    "tertiary": "#005338"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "sm": "8px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "xl": "48px",
+                    "md": "16px",
+                    "max-width": "1200px",
+                    "margin-desktop": "auto",
+                    "base": "4px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #191c1d; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-on-background fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-margin-desktop max-w-max-width mx-auto docked full-width top-0 h-16 border-b border-outline-variant dark:border-outline flat no shadows">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="menu">menu</span>
+<div class="flex items-center gap-2">
+<img alt="ResumeFit Logo" class="h-8 w-8 object-contain rounded-DEFAULT" src="https://lh3.googleusercontent.com/aida/AP1WRLutTYwc_hNXbUPyhmJRue1ivb4w01t8XxF9p7nC9Dp6NKjYQq1tDwcDlUA-aQkJPSRpiu4VfYWAm-CXUk0lfmj-zjcPa-Nw-oMctZbnrTEzGG4VFEpu_Kbrjemewk_XmqCAsh-3ixDKLLCRfojAZv2xjrxs1PqU4pA_gR5VzAn6_LlNhkMjwC4iOlZ7uZhJt-nk8MS9x6vLgED46tB1II0f5k1sxaW0UKcfVbB30eAm1KMjkzXFs5kspds"/>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">ResumeFit</span>
+</div>
+</div>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-lg h-full">
+<a class="h-full flex items-center font-label-md text-label-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary" href="#">Home</a>
+<a class="h-full flex items-center font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-inverse-surface transition-colors px-2 rounded-DEFAULT" href="#">Analyze</a>
+<a class="h-full flex items-center font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-inverse-surface transition-colors px-2 rounded-DEFAULT" href="#">Pricing</a>
+</nav>
+<div class="flex items-center gap-sm">
+<div class="h-8 w-8 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="person">person</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[80px] pb-xl px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto w-full flex flex-col gap-xl">
+<!-- Hero Section -->
+<section class="flex flex-col items-center text-center pt-xl pb-xl gap-lg">
+<div class="inline-flex items-center gap-xs bg-surface-container-low px-sm py-base rounded-full border border-outline-variant mb-4">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="new_releases">new_releases</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">New ATS Scoring Algorithm Live</span>
+</div>
+<h1 class="font-display-lg text-display-lg max-w-3xl">
+                Know if your resume passes the ATS — <span class="text-primary-container">and how to fix it if it doesn't.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Upload your resume and the job description. Our advanced system analyzes keywords, formatting, and content density to ensure you beat the Applicant Tracking System.
+            </p>
+<div class="flex gap-md mt-sm">
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-lg py-sm rounded-DEFAULT hover:opacity-90 transition-opacity shadow-sm">
+                    Get Started
+                </button>
+<button class="bg-surface text-on-surface font-label-md text-label-md px-lg py-sm rounded-DEFAULT border border-outline-variant hover:bg-surface-container transition-colors">
+                    View Sample Report
+                </button>
+</div>
+<!-- Bento-style visual placeholder for hero image/UI mock -->
+<div class="w-full max-w-4xl mt-xl rounded-xl border border-outline-variant bg-surface shadow-sm overflow-hidden flex flex-col md:flex-row h-96 relative">
+<div class="w-full md:w-1/3 bg-surface-container-lowest p-md border-r border-outline-variant flex flex-col gap-sm">
+<div class="h-4 w-24 bg-surface-container-high rounded-full mb-sm"></div>
+<div class="h-3 w-full bg-surface-container rounded-full"></div>
+<div class="h-3 w-5/6 bg-surface-container rounded-full"></div>
+<div class="h-3 w-4/6 bg-surface-container rounded-full"></div>
+<div class="mt-auto flex gap-xs">
+<span class="bg-surface-container-high text-on-surface-variant text-xs px-2 py-1 rounded-md">React</span>
+<span class="bg-surface-container-high text-on-surface-variant text-xs px-2 py-1 rounded-md">TypeScript</span>
+</div>
+</div>
+<div class="w-full md:w-2/3 bg-surface-container-low p-lg relative flex items-center justify-center">
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#4F46E5 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="bg-surface rounded-lg border border-outline-variant p-md shadow-md z-10 w-64 text-center transform -rotate-2">
+<div class="w-16 h-16 rounded-full border-4 border-on-tertiary-container flex items-center justify-center mx-auto mb-sm">
+<span class="font-headline-lg text-headline-lg text-tertiary-container">92</span>
+</div>
+<p class="font-headline-sm text-headline-sm">ATS Match</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Highly compatible with roles matching 'Frontend Developer'</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Section (3 Columns) -->
+<section class="py-xl">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg mb-sm">Precision tools for professional growth</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">We strip away the noise and focus on what the screening algorithms actually read.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Feature 1 -->
+<div class="bg-surface p-lg rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow flex flex-col items-start gap-md group">
+<div class="h-12 w-12 rounded-lg bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="document_scanner">document_scanner</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Format Validation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ensure your layout is machine-readable. We flag complex tables, hidden text, and unparseable columns.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface p-lg rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow flex flex-col items-start gap-md group">
+<div class="h-12 w-12 rounded-lg bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="key_visualizer">key</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Keyword Optimization</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Compare your resume against the job description to identify missing hard skills and mandatory qualifications.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface p-lg rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow flex flex-col items-start gap-md group">
+<div class="h-12 w-12 rounded-lg bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-xs">Actionable Insights</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Receive line-by-line feedback on phrasing, impact metrics, and structural improvements to boost your score.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-on-background full-width py-xl border-t border-outline-variant flat mt-auto">
+<div class="w-full flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto gap-md">
+<span class="font-label-md text-label-md font-bold text-on-surface">© 2024 ResumeFit. All rights reserved.</span>
+<div class="flex gap-lg">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

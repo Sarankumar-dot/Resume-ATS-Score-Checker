@@ -40,3 +40,14 @@ export async function create(data) {
 export async function findByGoogleId(googleId) {
   return prisma.user.findFirst({ where: { google_id: googleId } });
 }
+
+/**
+ * Update a user by their ID.
+ * @param {string} id
+ * @param {object} data - Fields to update
+ * @returns {Promise<object>} The updated user
+ */
+export async function update(id, data) {
+  return prisma.user.update({ where: { id }, data });
+}
+

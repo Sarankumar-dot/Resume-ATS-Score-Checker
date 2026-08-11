@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ResumeFit - Analyze Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#191c1d",
+                      "on-tertiary-container": "#67f4b7",
+                      "secondary-fixed": "#d9e3f6",
+                      "outline-variant": "#c7c4d8",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "on-tertiary": "#ffffff",
+                      "background": "#f8f9fa",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "inverse-primary": "#c3c0ff",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "primary": "#3525cd",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#191c1d",
+                      "on-error-container": "#93000a",
+                      "outline": "#777587",
+                      "secondary": "#555f6f",
+                      "on-surface-variant": "#464555",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed": "#0f0069",
+                      "surface-bright": "#f8f9fa",
+                      "on-tertiary-fixed": "#002113",
+                      "tertiary-container": "#006e4b",
+                      "secondary-fixed-dim": "#bdc7d9",
+                      "tertiary-fixed": "#6ffbbe",
+                      "on-secondary-fixed": "#121c2a",
+                      "on-primary-container": "#dad7ff",
+                      "surface-container-low": "#f3f4f5",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#d9dadb",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "secondary-container": "#d6e0f3",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#4d44e3",
+                      "on-secondary-container": "#596373",
+                      "surface-variant": "#e1e3e4",
+                      "surface-container": "#edeeef",
+                      "surface-container-highest": "#e1e3e4",
+                      "error": "#ba1a1a",
+                      "inverse-surface": "#2e3132",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#f0f1f2",
+                      "surface-container-high": "#e7e8e9",
+                      "primary-fixed": "#e2dfff",
+                      "primary-container": "#4f46e5",
+                      "on-secondary-fixed-variant": "#3d4756",
+                      "surface": "#f8f9fa",
+                      "tertiary": "#005338"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "sm": "8px",
+                      "margin-mobile": "16px",
+                      "lg": "24px",
+                      "xl": "48px",
+                      "md": "16px",
+                      "max-width": "1200px",
+                      "margin-desktop": "auto",
+                      "base": "4px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f9fa; /* background */
+        }
+        /* Custom styles for progress bars and gauges */
+        .gauge-container {
+            position: relative;
+            width: 160px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: 80px 80px 0 0;
+            background: #e1e3e4; /* surface-variant */
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .gauge-fill {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 160px;
+            height: 160px;
+            background: #4f46e5; /* primary-container */
+            border-radius: 50%;
+            transform-origin: center top;
+            transform: rotate(85deg); /* 85% score */
+            transition: transform 1s ease-out;
+        }
+        .gauge-cover {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 60px;
+            background: #ffffff; /* surface */
+            border-radius: 60px 60px 0 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden font-body-md text-on-background">
+<!-- Navigation Drawer (SideNav) -->
+<nav class="bg-surface dark:bg-on-background docked left-0 h-full w-72 border-r border-outline-variant shadow-md hidden md:flex flex-col py-lg z-40">
+<div class="px-lg mb-xl">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">ResumeFit Menu</span>
+</div>
+<ul class="flex-1 flex flex-col gap-sm px-md">
+<li>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-lg font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md bg-secondary-container dark:bg-secondary-container text-on-secondary-container rounded-lg px-4 py-3 scale-95 transition-transform font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                    Analyze
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-lg font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                    History
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 hover:bg-surface-container-high dark:hover:bg-inverse-surface rounded-lg font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- TopAppBar (Visible on Mobile, Hidden on Desktop since we have SideNav, but keeping header for context) -->
+<header class="bg-surface dark:bg-on-background docked full-width top-0 h-16 border-b border-outline-variant dark:border-outline flat no shadows md:hidden flex justify-between items-center px-4 z-50">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="menu">menu</span>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">ResumeFit</span>
+</div>
+<div>
+<!-- Avatar placeholder -->
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto p-4 md:p-gutter max-w-max-width mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-xl">
+<h1 class="font-display-lg text-display-lg mb-sm">Analysis Results</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Review your resume's performance against the targeted job description.</p>
+</div>
+<!-- Top Section: Scores -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-lg mb-xl">
+<!-- Overall Match Gauge -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm p-lg flex flex-col items-center justify-center">
+<h2 class="font-headline-sm text-headline-sm mb-lg">Overall Match</h2>
+<div class="gauge-container mb-sm">
+<div class="gauge-fill"></div>
+<div class="gauge-cover">
+<span class="font-display-lg text-display-lg text-primary">85<span class="font-body-md text-body-md">%</span></span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center mt-sm">Excellent match! You are highly competitive for this role.</p>
+</div>
+<!-- ATS Compatibility -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm p-lg flex flex-col justify-center">
+<h2 class="font-headline-sm text-headline-sm mb-lg">ATS Compatibility</h2>
+<div class="mb-sm flex justify-between items-end">
+<span class="font-body-md text-body-md font-medium text-on-surface">Formatting Score</span>
+<span class="font-headline-md text-headline-md text-primary">92%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2.5 mb-md">
+<div class="bg-primary-container h-2.5 rounded-full" style="width: 92%"></div>
+</div>
+<ul class="space-y-2 mt-md">
+<li class="flex items-center gap-sm font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-tertiary-container text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Standard fonts detected
+                        </li>
+<li class="flex items-center gap-sm font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-tertiary-container text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            No complex tables or columns
+                        </li>
+<li class="flex items-center gap-sm font-body-sm text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-error text-[18px]" data-icon="error" style="font-variation-settings: 'FILL' 1;">error</span>
+                            Header/Footer data might be missed
+                        </li>
+</ul>
+</div>
+</section>
+<!-- Main Body: Bento Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-xl">
+<!-- Keyword Match (Chips) -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm p-lg lg:col-span-1">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="key">key</span>
+<h2 class="font-headline-sm text-headline-sm">Keyword Analysis</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Skills and terms found in job description.</p>
+<div class="mb-md">
+<h3 class="font-label-sm text-label-sm text-on-surface mb-sm uppercase tracking-wide">Found (12)</h3>
+<div class="flex flex-wrap gap-sm">
+<span class="px-3 py-1 bg-surface-container-high rounded-md font-label-md text-label-md text-on-surface-variant">React</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-md font-label-md text-label-md text-on-surface-variant">TypeScript</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-md font-label-md text-label-md text-on-surface-variant">Node.js</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-md font-label-md text-label-md text-on-surface-variant">Agile</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-md font-label-md text-label-md text-on-surface-variant">REST APIs</span>
+</div>
+</div>
+<div>
+<h3 class="font-label-sm text-label-sm text-on-surface mb-sm uppercase tracking-wide">Missing (3)</h3>
+<div class="flex flex-wrap gap-sm">
+<span class="px-3 py-1 bg-error-container rounded-md font-label-md text-label-md text-on-error-container">GraphQL</span>
+<span class="px-3 py-1 bg-error-container rounded-md font-label-md text-label-md text-on-error-container">Docker</span>
+<span class="px-3 py-1 bg-error-container rounded-md font-label-md text-label-md text-on-error-container">CI/CD</span>
+</div>
+</div>
+</div>
+<!-- Suggestions (Before/After) -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm p-lg lg:col-span-2">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-primary" data-icon="lightbulb">lightbulb</span>
+<h2 class="font-headline-sm text-headline-sm">Impact Suggestions</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Enhance your bullet points with measurable results.</p>
+<div class="space-y-lg">
+<!-- Suggestion Item -->
+<div class="border-l-4 border-primary pl-md">
+<div class="mb-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wide">Current</span>
+<p class="font-body-md text-body-md text-on-surface-variant bg-surface-container-low p-sm rounded mt-xs line-through opacity-70">Developed new features for the main application.</p>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wide">Suggested</span>
+<p class="font-body-md text-body-md text-on-surface bg-primary-fixed-dim p-sm rounded mt-xs font-medium">Developed and deployed 5 core features for the main application, resulting in a 20% increase in user engagement over 3 months.</p>
+</div>
+</div>
+<!-- Suggestion Item -->
+<div class="border-l-4 border-primary pl-md">
+<div class="mb-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wide">Current</span>
+<p class="font-body-md text-body-md text-on-surface-variant bg-surface-container-low p-sm rounded mt-xs line-through opacity-70">Managed a team of developers.</p>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wide">Suggested</span>
+<p class="font-body-md text-body-md text-on-surface bg-primary-fixed-dim p-sm rounded mt-xs font-medium">Led a cross-functional team of 6 developers in an Agile environment, delivering 3 major product releases ahead of schedule.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

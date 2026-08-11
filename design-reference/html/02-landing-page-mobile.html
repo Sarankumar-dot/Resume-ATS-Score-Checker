@@ -1,0 +1,199 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ResumeFit - ATS Resume Optimization</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "surface-container-high": "#e7e8e9",
+                        "surface": "#f8f9fa",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c7c4d8",
+                        "on-surface-variant": "#464555",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "on-tertiary-container": "#67f4b7",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-tertiary-fixed": "#002113",
+                        "secondary-fixed": "#d9e3f6",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary-container": "#596373",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "outline": "#777587",
+                        "surface-bright": "#f8f9fa",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-container": "#006e4b",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "surface-variant": "#e1e3e4",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary": "#005338",
+                        "surface-tint": "#4d44e3",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "primary": "#3525cd",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-fixed": "#0f0069",
+                        "inverse-primary": "#c3c0ff",
+                        "secondary": "#555f6f",
+                        "primary-fixed": "#e2dfff",
+                        "on-background": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "background": "#f8f9fa",
+                        "tertiary-fixed": "#6ffbbe",
+                        "primary-container": "#4f46e5",
+                        "on-primary-container": "#dad7ff",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d6e0f3",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "max-width": "1200px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "base": "4px",
+                        "xl": "48px",
+                        "margin-desktop": "auto",
+                        "lg": "24px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-margin-desktop max-w-max-width mx-auto h-16 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed md:hidden cursor-pointer" data-icon="menu">menu</span>
+<div class="flex items-center gap-2">
+<img alt="ResumeFit Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPWEY3DfeM60ppQbR1cMRGkVYKreBVl3V5zZIlZDVL_yBlOs0stQTaHdYAiWG17sIKD7wt7ewkV-6iLBRD_xWFJ-eoz11fxTZ2wPh2-6fY8wzZLr6gluR4h17WxvGi7n4n5u-e-TGogtV5qUbKpK73lvcwEMT_pX79umSDUxAbYnbtDoAuQA8Oh3PCj3Vut0Z1fP14qQo6459vkoqCCKMwcx93RUgs_6vaP64lSshGYjIrEPWbeqJl">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">ResumeFit</span>
+</div>
+</div>
+<nav class="hidden md:flex gap-lg">
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary pb-1" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">Analyze</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors pb-1" href="#">History</a>
+</nav>
+<div class="flex items-center">
+<span class="font-label-md text-label-md text-on-surface-variant hidden md:block mr-2">Login</span>
+<div class="h-8 w-8 rounded-full bg-surface-container flex items-center justify-center overflow-hidden cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="person">person</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop max-w-max-width w-full mx-auto pb-xl">
+<!-- Hero Section -->
+<section class="w-full py-24 md:py-32 flex flex-col items-center text-center max-w-3xl mx-auto space-y-8">
+<h1 class="font-display-lg text-display-lg text-on-surface">
+                Know if your resume passes the ATS — <span class="text-primary-container">and how to fix it if it doesn't.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Upload your resume and the job description you're targeting. ResumeFit instantly analyzes keywords, formatting, and impact to ensure your application gets seen by a human.
+            </p>
+<div class="pt-4">
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-8 py-4 rounded-lg hover:bg-primary transition-colors shadow-sm hover:shadow-md flex items-center gap-2">
+                    Get Started <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Features Section (Bento Grid Style) -->
+<section class="w-full py-xl grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Feature 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow">
+<div class="h-12 w-12 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="troubleshoot" data-weight="fill" style="font-variation-settings: 'FILL' 1;">troubleshoot</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">JD Match Score</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Compare your resume directly against specific job descriptions. Identify missing keywords and hard skills critical for passing automated screens.
+                </p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow">
+<div class="h-12 w-12 rounded-lg bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined" data-icon="grading" data-weight="fill" style="font-variation-settings: 'FILL' 1;">grading</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">ATS Compatibility Check</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Ensure your document format is readable by major Applicant Tracking Systems. We flag unreadable columns, fonts, and complex graphics.
+                </p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow">
+<div class="h-12 w-12 rounded-lg bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined" data-icon="draw" data-weight="fill" style="font-variation-settings: 'FILL' 1;">draw</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Actionable Suggestions</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Receive line-by-line recommendations on how to rephrase bullet points to maximize impact and align with the role's core competencies.
+                </p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto bg-surface-container-low dark:bg-on-background py-xl border-t border-outline-variant">
+<span class="font-label-md text-label-md font-bold text-on-surface mb-4 md:mb-0">ResumeFit</span>
+<div class="flex gap-md font-body-sm text-body-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-4 md:mt-0">© 2026 ResumeFit. All rights reserved.</span>
+</footer>
+
+
+</body></html>

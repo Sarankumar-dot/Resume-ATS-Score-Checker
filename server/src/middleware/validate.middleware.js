@@ -16,33 +16,29 @@
  */
 export function validate(schema) {
   return (req, res, next) => {
-    try {
-      const result = schema.safeParse({
-        body: req.body,
-        params: req.params,
-        query: req.query,
+    const result = schema.safeParse({
+      body: req.body,
+      params: req.params,
+      query: req.query,
+    });
+
+    if (!result.success) {
+      const errors = result.error.issues.map((issue) => ({
+        path: issue.path.join("."),
+        message: issue.message,
+      }));
+
+      return res.status(400).json({
+        error: "Validation failed",
+        details: errors,
       });
-
-      if (!result.success) {
-        const errors = result.error.issues.map((issue) => ({
-          path: issue.path.join("."),
-          message: issue.message,
-        }));
-
-        return res.status(400).json({
-          error: "Validation failed",
-          details: errors,
-        });
-      }
-
-      // Replace req data with parsed (and potentially transformed) values
-      req.body = result.data.body ?? req.body;
-      req.params = result.data.params ?? req.params;
-      req.query = result.data.query ?? req.query;
-
-      next();
-    } catch (error) {
-      return res.status(500).json({ error: "Internal validation error" });
     }
+
+    // Only replace body (params and query may be read-only in Express v5)
+    if (result.data.body) {
+      req.body = result.data.body;
+    }
+
+    next();
   };
 }

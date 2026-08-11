@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ResumeFit - History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#191c1d",
+                      "on-tertiary-container": "#67f4b7",
+                      "secondary-fixed": "#d9e3f6",
+                      "outline-variant": "#c7c4d8",
+                      "on-tertiary-fixed-variant": "#005236",
+                      "on-tertiary": "#ffffff",
+                      "background": "#f8f9fa",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "inverse-primary": "#c3c0ff",
+                      "tertiary-fixed-dim": "#4edea3",
+                      "primary": "#3525cd",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#191c1d",
+                      "on-error-container": "#93000a",
+                      "outline": "#777587",
+                      "secondary": "#555f6f",
+                      "on-surface-variant": "#464555",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed": "#0f0069",
+                      "surface-bright": "#f8f9fa",
+                      "on-tertiary-fixed": "#002113",
+                      "tertiary-container": "#006e4b",
+                      "secondary-fixed-dim": "#bdc7d9",
+                      "tertiary-fixed": "#6ffbbe",
+                      "on-secondary-fixed": "#121c2a",
+                      "on-primary-container": "#dad7ff",
+                      "surface-container-low": "#f3f4f5",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#d9dadb",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "secondary-container": "#d6e0f3",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#4d44e3",
+                      "on-secondary-container": "#596373",
+                      "surface-variant": "#e1e3e4",
+                      "surface-container": "#edeeef",
+                      "surface-container-highest": "#e1e3e4",
+                      "error": "#ba1a1a",
+                      "inverse-surface": "#2e3132",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#f0f1f2",
+                      "surface-container-high": "#e7e8e9",
+                      "primary-fixed": "#e2dfff",
+                      "primary-container": "#4f46e5",
+                      "on-secondary-fixed-variant": "#3d4756",
+                      "surface": "#f8f9fa",
+                      "tertiary": "#005338"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "sm": "8px",
+                      "margin-mobile": "16px",
+                      "lg": "24px",
+                      "xl": "48px",
+                      "md": "16px",
+                      "max-width": "1200px",
+                      "margin-desktop": "auto",
+                      "base": "4px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* bg-background */
+        }
+        /* Custom Scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f3f4f5; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c7c4d8; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #777587; 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<nav class="hidden md:flex flex-col py-lg bg-surface dark:bg-on-background border-r border-outline-variant shadow-md docked left-0 h-full w-72 flex-shrink-0 z-40">
+<div class="px-4 mb-xl">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">ResumeFit Menu</h2>
+</div>
+<ul class="flex flex-col gap-sm px-2 font-label-md text-label-md flex-grow">
+<li>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                    Analyze
+                </a>
+</li>
+<li>
+<a aria-current="page" class="flex items-center gap-md bg-secondary-container dark:bg-secondary-container text-on-secondary-container rounded-lg px-4 py-3 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+                    History
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Mobile Header (Visible only on small screens, simplified) -->
+<header class="md:hidden flex justify-between items-center p-4 bg-surface border-b border-outline-variant z-50">
+<span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">ResumeFit</h1>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-label-sm">U</div>
+</header>
+<!-- Top App Bar (Desktop version, replacing generic one for cleaner layout in this specific flow) -->
+<header class="hidden md:flex justify-between items-center px-lg py-4 bg-surface border-b border-outline-variant sticky top-0 z-30">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Your Analyses</h1>
+<div class="flex items-center gap-md">
+<!-- Search/Filter could go here -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-body-sm text-body-sm bg-surface-container-lowest" placeholder="Search history..." type="text"/>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden cursor-pointer">
+<img alt="User profile avatar" class="object-cover w-full h-full" data-alt="A professional headshot of a user against a neutral grey background, corporate style, well lit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_DBZmbEI2qCDXB40Yi-38VuP12TG1xPBXIisTuHkaQYGbpfr8TPHpc_TbOMCrr_oRGsbB0nQPtPksMbr8-FY9J84FcAJz1-cUTfQCNOCXfnaGJ2AoI5njzJQqjpNmmE05H2VRGXbsMyoCSWQyANFF6AzGVipXTK_qlvatSDE06DxPPTyXf8u1VqCy7L7ptiNWuMsqECH_-EvZdR-M_dofzJv1XgcOE8LyyERaysF7MvngVS-XqxPo"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<div class="flex-1 overflow-y-auto p-4 md:p-lg lg:p-xl scroll-smooth">
+<div class="max-w-max-width mx-auto">
+<div class="md:hidden mb-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Your Analyses</h1>
+</div>
+<!-- Filters & Sorting (Bento-lite approach) -->
+<div class="flex flex-wrap gap-sm mb-lg">
+<button class="px-4 py-2 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md border border-transparent hover:bg-surface-variant transition-colors flex items-center gap-2">
+                        All Time
+                        <span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md border border-outline-variant hover:bg-surface-container-low transition-colors">
+                        High Score (&gt;80)
+                    </button>
+<button class="px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-md text-label-md border border-outline-variant hover:bg-surface-container-low transition-colors">
+                        Tech Roles
+                    </button>
+</div>
+<!-- Analysis Grid (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Card 1 (Excellent Score) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm hover:shadow-md transition-shadow flex flex-col group relative overflow-hidden">
+<!-- Decorative subtle gradient top border -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tertiary-fixed to-primary opacity-50"></div>
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="inline-block px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm mb-2">Software Engineer</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1" title="JohnDoe_SeniorDev_Q3.pdf">JohnDoe_SeniorDev_Q3.pdf</h3>
+<p class="font-body-sm text-body-sm text-outline mt-1">Oct 24, 2024 • 10:30 AM</p>
+</div>
+<!-- Score Badge -->
+<div class="flex flex-col items-center justify-center w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container font-headline-sm text-headline-sm border-2 border-tertiary-fixed-dim">
+                                92
+                            </div>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant flex justify-between items-center">
+<div class="flex -space-x-2">
+<span class="w-6 h-6 rounded-full bg-surface-container border border-surface-container-lowest flex items-center justify-center" title="Keywords Optimized"><span class="material-symbols-outlined text-[14px] text-primary">done_all</span></span>
+<span class="w-6 h-6 rounded-full bg-surface-container border border-surface-container-lowest flex items-center justify-center" title="Formatting Passed"><span class="material-symbols-outlined text-[14px] text-tertiary">check</span></span>
+</div>
+<button class="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors flex items-center gap-1 group-hover:underline">
+                                View Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2 (Good Score) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm hover:shadow-md transition-shadow flex flex-col group relative overflow-hidden">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="inline-block px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm mb-2">Product Manager</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1" title="JD_PM_Resume_Final.pdf">JD_PM_Resume_Final.pdf</h3>
+<p class="font-body-sm text-body-sm text-outline mt-1">Oct 18, 2024 • 2:15 PM</p>
+</div>
+<!-- Score Badge -->
+<div class="flex flex-col items-center justify-center w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container font-headline-sm text-headline-sm border-2 border-secondary-fixed">
+                                78
+                            </div>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant flex justify-between items-center">
+<div class="flex -space-x-2 opacity-70">
+<span class="w-6 h-6 rounded-full bg-surface-container border border-surface-container-lowest flex items-center justify-center" title="Needs Action Verbs"><span class="material-symbols-outlined text-[14px] text-secondary">edit</span></span>
+</div>
+<button class="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors flex items-center gap-1 group-hover:underline">
+                                View Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3 (Needs Work) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm hover:shadow-md transition-shadow flex flex-col group relative overflow-hidden">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="inline-block px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm mb-2">UX Designer</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1" title="Design_Resume_Draft1.pdf">Design_Resume_Draft1.pdf</h3>
+<p class="font-body-sm text-body-sm text-outline mt-1">Oct 10, 2024 • 9:00 AM</p>
+</div>
+<!-- Score Badge -->
+<div class="flex flex-col items-center justify-center w-12 h-12 rounded-full bg-error-container text-on-error-container font-headline-sm text-headline-sm border-2 border-error">
+                                54
+                            </div>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant flex justify-between items-center">
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1 text-[12px] text-error font-medium">
+<span class="material-symbols-outlined text-[14px]">warning</span> High Impact
+                                </span>
+</div>
+<button class="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors flex items-center gap-1 group-hover:underline">
+                                View Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 4 (Another Excellent) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm hover:shadow-md transition-shadow flex flex-col group relative overflow-hidden">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="inline-block px-2 py-1 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm mb-2">Data Analyst</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1" title="Data_Role_Resume_ATS.pdf">Data_Role_Resume_ATS.pdf</h3>
+<p class="font-body-sm text-body-sm text-outline mt-1">Sep 28, 2024 • 4:45 PM</p>
+</div>
+<!-- Score Badge -->
+<div class="flex flex-col items-center justify-center w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container font-headline-sm text-headline-sm border-2 border-tertiary-fixed-dim">
+                                88
+                            </div>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant flex justify-between items-center">
+<div class="flex -space-x-2">
+<span class="w-6 h-6 rounded-full bg-surface-container border border-surface-container-lowest flex items-center justify-center"><span class="material-symbols-outlined text-[14px] text-primary">done_all</span></span>
+</div>
+<button class="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors flex items-center gap-1 group-hover:underline">
+                                View Details <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
