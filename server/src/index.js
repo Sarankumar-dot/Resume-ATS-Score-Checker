@@ -12,6 +12,7 @@ import swaggerSpec from "./config/swagger.js";
 // Routes
 import healthRoutes from "./routes/health.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import resumeRoutes from "./routes/resume.routes.js";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // --------------- API Routes ---------------
 app.use("/api", healthRoutes);
 app.use("/api", authRoutes);
+app.use("/api", resumeRoutes);
 
 // --------------- 404 Handler ---------------
 app.use((req, res) => {
@@ -35,8 +37,9 @@ app.use((req, res) => {
 
 // --------------- Error Handler ---------------
 app.use((err, req, res, next) => {
-  console.error("Unhandled error:", err);
-  res.status(500).json({ error: "Internal server error" });
+  const status = err.status || 500;
+  if (status >= 500) console.error("Unhandled error:", err);
+  res.status(status).json({ error: err.message || "Internal server error" });
 });
 
 // --------------- Start Server ---------------

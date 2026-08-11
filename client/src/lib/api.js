@@ -58,6 +58,33 @@ export const api = {
     request(endpoint, { ...options, method: "PUT", body: JSON.stringify(body) }),
   delete: (endpoint, options) =>
     request(endpoint, { ...options, method: "DELETE" }),
+
+  /**
+   * POST multipart/form-data (file upload).
+   * Does NOT set Content-Type — the browser must set it with the correct boundary.
+   * @param {string} endpoint
+   * @param {FormData} formData
+   */
+  postFormData: (endpoint, formData) => {
+    const url = `${API_URL}${endpoint}`;
+    const headers = {};
+    if (accessToken) headers["Authorization"] = `Bearer ${accessToken}`;
+    return fetch(url, {
+      method: "POST",
+      body: formData,
+      headers,
+      credentials: "include",
+    }).then(async (res) => {
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        const error = new Error(data?.error || `Request failed (${res.status})`);
+        error.status = res.status;
+        error.data = data;
+        throw error;
+      }
+      return data;
+    });
+  },
 };
 
 let refreshPromise = null;
