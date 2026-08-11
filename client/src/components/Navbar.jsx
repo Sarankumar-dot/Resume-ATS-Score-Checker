@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LayoutDashboard, FileSearch, History as HistoryIcon, Settings, Menu, LogOut, X } from 'lucide-react';
+import { LayoutDashboard, FileSearch, History as HistoryIcon, Settings, Menu, LogOut, X, Loader2 } from 'lucide-react';
 import logo from '../assets/logo.png';
 
 export default function Navbar() {
@@ -9,13 +9,16 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = async () => {
+    setIsLoggingOut(true);
     try {
       await logout();
       navigate('/login');
     } catch (err) {
       console.error("Logout failed", err);
+      setIsLoggingOut(false);
     }
   };
 
@@ -79,10 +82,16 @@ export default function Navbar() {
         <div className="px-4 mt-auto space-y-sm">
           <button 
             onClick={handleLogout}
-            className="w-full flex items-center gap-md text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-colors rounded-lg"
+            disabled={isLoggingOut}
+            className="w-full flex items-center gap-md text-on-surface-variant px-4 py-3 hover:bg-surface-container-high transition-colors rounded-lg disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <LogOut size={20} />
-            <span className="font-label-md text-label-md">Logout</span>
+            {isLoggingOut
+              ? <Loader2 size={20} className="animate-spin" />
+              : <LogOut size={20} />
+            }
+            <span className="font-label-md text-label-md">
+              {isLoggingOut ? 'Signing out…' : 'Logout'}
+            </span>
           </button>
           
           <div className="flex items-center gap-md p-4 bg-surface-container-low rounded-lg border border-outline-variant">

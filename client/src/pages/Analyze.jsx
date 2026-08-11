@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { UploadCloud, ScanSearch, FileText, X, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { api } from "../lib/api";
 
@@ -252,17 +253,7 @@ function Analyze() {
           </div>
         </div>
 
-        {/* Footer */}
-        <footer className="bg-surface-container-low border-t border-outline-variant w-full py-xl mt-auto">
-          <div className="w-full flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto gap-lg">
-            <span className="font-label-md text-label-md font-bold text-on-surface">© 2024 ResumeFit. All rights reserved.</span>
-            <nav className="flex gap-lg">
-              <a href="#" className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</a>
-              <a href="#" className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Terms of Service</a>
-              <a href="#" className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors">Contact Support</a>
-            </nav>
-          </div>
-        </footer>
+        <Footer />
       </main>
     </div>
   );

@@ -2,19 +2,18 @@
 // Text extraction from PDF and DOCX buffers.
 // No file I/O — all operations work on in-memory buffers passed from multer.
 
-import { createRequire } from "module";
+import { PDFParse } from "pdf-parse";
 import mammoth from "mammoth";
-
-const require = createRequire(import.meta.url);
-const pdfParse = require("pdf-parse");
 
 /**
  * Extract plain text from a PDF buffer.
+ * pdf-parse v2 API: new PDFParse({ data: buffer }).getText() → { text }
  * @param {Buffer} buffer
  * @returns {Promise<string>}
  */
 export async function parsePdf(buffer) {
-  const result = await pdfParse(buffer);
+  const parser = new PDFParse({ data: buffer });
+  const result = await parser.getText();
   return result.text;
 }
 
