@@ -44,7 +44,7 @@ function GoogleLoginButton({ onError }) {
         onError={handleError}
         theme="outline"
         size="large"
-        width="100%"
+        width="400"
         text="continue_with"
       />
     </div>
