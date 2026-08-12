@@ -9,9 +9,11 @@ import env from "../config/env.js";
 const COOKIE_OPTIONS = {
   httpOnly: true,
   secure: env.NODE_ENV === "production",
-  // 'strict' blocks the cookie on cross-origin requests in local dev (port 5173 → 5000).
-  // Use 'lax' in development so the browser sends it on same-site navigations + fetch with credentials.
-  sameSite: env.NODE_ENV === "production" ? "strict" : "lax",
+  // In production the frontend (Vercel) and backend (Render) live on different
+  // domains, so the refresh-token cookie is cross-site. 'none' + secure:true
+  // is required for the browser to include it. In dev (same localhost, different
+  // ports) 'lax' is fine because same-site rules treat them as same-site.
+  sameSite: env.NODE_ENV === "production" ? "none" : "lax",
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   path: "/",
 };
@@ -117,7 +119,7 @@ export async function logout(req, res) {
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: env.NODE_ENV === "production",
-      sameSite: env.NODE_ENV === "production" ? "strict" : "lax",
+      sameSite: env.NODE_ENV === "production" ? "none" : "lax",
       path: "/",
     });
 
