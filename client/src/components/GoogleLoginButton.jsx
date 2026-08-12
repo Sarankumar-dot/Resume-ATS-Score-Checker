@@ -1,6 +1,6 @@
 // Google Login Button — uses @react-oauth/google
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useAuth } from "../context/AuthContext";
 import { Loader2 } from "lucide-react";
@@ -8,6 +8,22 @@ import { Loader2 } from "lucide-react";
 function GoogleLoginButton({ onError }) {
   const { googleLogin } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+  const containerRef = useRef(null);
+  const [buttonWidth, setButtonWidth] = useState(0);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        const width = Math.min(containerRef.current.offsetWidth, 400);
+        setButtonWidth(Math.max(width, 200)); // Google minimum is usually 200
+      }
+    };
+
+    // Initial calculation and attach listener
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
   const handleSuccess = async (credentialResponse) => {
     setIsLoading(true);
@@ -38,15 +54,18 @@ function GoogleLoginButton({ onError }) {
   }
 
   return (
-    <div className="flex justify-center">
-      <GoogleLogin
-        onSuccess={handleSuccess}
-        onError={handleError}
-        theme="outline"
-        size="large"
-        width="400"
-        text="continue_with"
-      />
+    <div ref={containerRef} className="flex justify-center w-full">
+      {/* Only render when we have calculated the width to prevent flickering/re-rendering issues with the iframe */}
+      {buttonWidth > 0 && (
+        <GoogleLogin
+          onSuccess={handleSuccess}
+          onError={handleError}
+          theme="outline"
+          size="large"
+          width={buttonWidth.toString()}
+          text="continue_with"
+        />
+      )}
     </div>
   );
 }
