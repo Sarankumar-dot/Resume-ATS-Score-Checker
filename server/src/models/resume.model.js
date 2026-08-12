@@ -9,14 +9,18 @@ import prisma from "../lib/prisma.js";
  * @param {string} userId
  * @param {string} filename
  * @param {string} parsedText
+ * @param {number} [fileSize]
+ * @param {string} [mimetype]
  * @returns {Promise<object>}
  */
-export async function create(userId, filename, parsedText) {
+export async function create(userId, filename, parsedText, fileSize = null, mimetype = null) {
   return prisma.resume.create({
     data: {
       user_id: userId,
       filename,
       parsed_text: parsedText,
+      file_size: fileSize,
+      mimetype: mimetype,
     },
   });
 }

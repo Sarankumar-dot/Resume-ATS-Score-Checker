@@ -1,7 +1,8 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { UploadCloud, ScanSearch, FileText, X, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { UploadCloud, ScanSearch, FileText, X, CheckCircle2, AlertCircle, Loader2, XCircle, AlertTriangle, Info, ShieldCheck } from "lucide-react";
 import { api } from "../lib/api";
 
 const ACCEPTED_TYPES = [
@@ -26,6 +27,17 @@ function Analyze() {
   const [wordCount, setWordCount] = useState(null);
   const [isDragOver, setIsDragOver] = useState(false);
 
+  // ── Structure analysis state ────────────────────────────────────────────────
+  const [structureLoading, setStructureLoading] = useState(false);
+  const [structureResult, setStructureResult] = useState(null);
+  const [structureError, setStructureError] = useState(null);
+
+  // ── JD matching state ───────────────────────────────────────────────────────
+  const [jdText, setJdText] = useState("");
+  const [matching, setMatching] = useState(false);
+  const [matchError, setMatchError] = useState(null);
+
+  const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
   // ── Client-side validation ──────────────────────────────────────────────────
@@ -53,6 +65,8 @@ function Analyze() {
     setResumeId(null);
     setParsedPreview(null);
     setWordCount(null);
+    setStructureResult(null);
+    setStructureError(null);
 
     try {
       const formData = new FormData();
@@ -76,6 +90,28 @@ function Analyze() {
       setUploading(false);
     }
   }, []);
+
+  // ── Auto-trigger structure check after upload ───────────────────────────────
+  useEffect(() => {
+    if (!resumeId) return;
+
+    let cancelled = false;
+    async function runStructureCheck() {
+      setStructureLoading(true);
+      setStructureError(null);
+      try {
+        const result = await api.post(`/analysis/${resumeId}/structure`);
+        if (!cancelled) setStructureResult(result);
+      } catch (err) {
+        if (!cancelled) setStructureError(err.message || "Structure analysis failed.");
+      } finally {
+        if (!cancelled) setStructureLoading(false);
+      }
+    }
+
+    runStructureCheck();
+    return () => { cancelled = true; };
+  }, [resumeId]);
 
   // ── Drag-and-drop handlers ──────────────────────────────────────────────────
   const handleDrop = useCallback(
@@ -107,17 +143,29 @@ function Analyze() {
     setResumeId(null);
     setParsedPreview(null);
     setWordCount(null);
+    setStructureResult(null);
+    setStructureError(null);
+    setJdText("");
+    setMatchError(null);
   };
 
   // ── Derived state ───────────────────────────────────────────────────────────
   const uploadSucceeded = !!resumeId;
+
+  // ── Section checklist helpers ───────────────────────────────────────────────
+  const sectionOrder = ["contact", "summary", "skills", "experience", "education", "projects"];
+
+  function sectionFoundCount() {
+    if (!structureResult?.sections) return 0;
+    return Object.values(structureResult.sections).filter(s => s.found).length;
+  }
 
   return (
     <div className="bg-background text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
       <Navbar />
 
       <main className="flex-1 flex flex-col min-h-screen w-full relative">
-        <div className="flex-1 w-full max-w-max-width mx-auto px-4 md:px-lg pt-12 md:pt-16 pb-xl flex flex-col items-center justify-center">
+        <div className="flex-1 w-full max-w-max-width mx-auto px-4 md:px-lg pt-12 md:pt-16 pb-xl flex flex-col items-center justify-start">
           <div className="text-center mb-xl">
             <h1 className="font-headline-lg text-headline-lg text-on-surface mb-sm">Analyze Resume Fit</h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
@@ -225,29 +273,172 @@ function Analyze() {
                 <label className="font-label-md text-label-md text-on-surface">2. Job Description</label>
                 <div className="flex-1 flex flex-col">
                   <textarea
+                    value={jdText}
+                    onChange={(e) => setJdText(e.target.value)}
                     className="w-full h-full min-h-[300px] border border-outline-variant rounded-lg bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:border-primary resize-none p-md font-body-sm text-body-sm text-on-surface"
                     placeholder="Paste the full job description here…"
                   />
                 </div>
                 <p className="font-body-sm text-body-sm text-on-surface-variant">
-                  JD matching and scoring will be available in the next phase.
+                  {jdText.length < 50 && jdText.length > 0
+                    ? `${50 - jdText.length} more characters needed (min 50)`
+                    : "Paste a job description to analyze keyword match"}
                 </p>
               </div>
             </div>
 
+            {/* ── Structure Analysis Results (inline) ────────────────────── */}
+            {(structureLoading || structureResult || structureError) && (
+              <div className="border-t border-outline-variant pt-lg flex flex-col gap-lg">
+                {/* Loading */}
+                {structureLoading && (
+                  <div className="flex items-center gap-md justify-center py-lg">
+                    <Loader2 className="w-5 h-5 text-primary animate-spin" />
+                    <span className="font-body-md text-body-md text-on-surface-variant">Analyzing resume structure…</span>
+                  </div>
+                )}
+
+                {/* Error */}
+                {structureError && !structureLoading && (
+                  <div className="flex items-start gap-sm bg-error-container text-on-error-container rounded-lg px-md py-sm border border-error">
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                    <p className="font-body-sm text-body-sm">{structureError}</p>
+                  </div>
+                )}
+
+                {/* Results */}
+                {structureResult && !structureLoading && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
+
+                    {/* ── Section Checklist ───────────────────────────────── */}
+                    <div className="bg-surface rounded-xl border border-outline-variant p-lg">
+                      <div className="flex items-center gap-sm mb-md">
+                        <ShieldCheck className="w-5 h-5 text-primary" />
+                        <h3 className="font-headline-sm text-headline-sm">Section Detection</h3>
+                      </div>
+                      <p className="font-body-sm text-body-sm text-on-surface-variant mb-md">
+                        {sectionFoundCount()} of {sectionOrder.length} standard sections detected
+                      </p>
+                      <ul className="space-y-2">
+                        {sectionOrder.map((key) => {
+                          const section = structureResult.sections[key];
+                          if (!section) return null;
+                          return (
+                            <li key={key} className="flex items-start gap-sm">
+                              {section.found ? (
+                                <CheckCircle2 className="w-4 h-4 text-tertiary shrink-0 mt-0.5" />
+                              ) : (
+                                <XCircle className="w-4 h-4 text-error shrink-0 mt-0.5" />
+                              )}
+                              <div className="min-w-0">
+                                <span className={`font-label-md text-label-md ${section.found ? 'text-on-surface' : 'text-on-surface-variant'}`}>
+                                  {section.label}
+                                </span>
+                                {section.found && section.snippet && (
+                                  <p className="font-body-sm text-body-sm text-on-surface-variant truncate" style={{ maxWidth: '320px' }}>
+                                    {section.snippet}
+                                  </p>
+                                )}
+                              </div>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+
+                    {/* ── ATS Formatting Warnings ─────────────────────────── */}
+                    <div className="bg-surface rounded-xl border border-outline-variant p-lg">
+                      <div className="flex items-center gap-sm mb-md">
+                        <AlertTriangle className="w-5 h-5 text-primary" />
+                        <h3 className="font-headline-sm text-headline-sm">ATS Compatibility</h3>
+                      </div>
+
+                      {structureResult.atsIssues.length === 0 ? (
+                        <div className="flex items-center gap-sm py-md">
+                          <CheckCircle2 className="w-5 h-5 text-tertiary" />
+                          <p className="font-body-md text-body-md text-on-surface">
+                            No formatting issues detected — looking good!
+                          </p>
+                        </div>
+                      ) : (
+                        <ul className="space-y-3">
+                          {structureResult.atsIssues.map((issue, i) => (
+                            <li
+                              key={i}
+                              className={`flex items-start gap-sm rounded-lg px-md py-sm border ${
+                                issue.severity === 'warning'
+                                  ? 'bg-error-container/30 border-error/30'
+                                  : 'bg-secondary-container/30 border-outline-variant'
+                              }`}
+                            >
+                              {issue.severity === 'warning' ? (
+                                <AlertTriangle className="w-4 h-4 text-error shrink-0 mt-0.5" />
+                              ) : (
+                                <Info className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
+                              )}
+                              <div className="min-w-0">
+                                <p className={`font-label-md text-label-md ${
+                                  issue.severity === 'warning' ? 'text-error' : 'text-on-surface'
+                                }`}>
+                                  {issue.issue}
+                                </p>
+                                <p className="font-body-sm text-body-sm text-on-surface-variant mt-xs">
+                                  {issue.detail}
+                                </p>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* ── Action ──────────────────────────────────────────────── */}
-            <div className="flex justify-center mt-md pt-lg border-t border-surface-variant">
+            <div className="flex flex-col items-center gap-sm mt-md pt-lg border-t border-surface-variant">
+              {matchError && (
+                <div className="flex items-start gap-sm bg-error-container text-on-error-container rounded-lg p-md border border-error/50 mb-sm max-w-md w-full">
+                  <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                  <div className="text-left w-full">
+                    <p className="font-label-md text-label-md font-bold mb-xs">Analysis failed</p>
+                    <p className="font-body-sm text-body-sm opacity-90">{matchError}</p>
+                  </div>
+                </div>
+              )}
               <button
-                disabled={!uploadSucceeded}
+                disabled={!uploadSucceeded || jdText.trim().length < 50 || matching}
+                onClick={async () => {
+                  setMatching(true);
+                  setMatchError(null);
+                  try {
+                    const data = await api.post(`/analysis/${resumeId}/match`, { jdText });
+                    navigate(`/analysis/${data.analysis.id}`);
+                  } catch (err) {
+                    setMatchError(err.message || "Analysis failed. Please try again.");
+                  } finally {
+                    setMatching(false);
+                  }
+                }}
                 className={`font-label-md text-label-md px-xl py-3 rounded-md shadow-sm flex items-center gap-sm transition-colors ${
-                  uploadSucceeded
+                  uploadSucceeded && jdText.trim().length >= 50 && !matching
                     ? "bg-primary text-on-primary hover:bg-[#3f38b8] cursor-pointer"
                     : "bg-surface-container text-on-surface-variant cursor-not-allowed opacity-60"
                 }`}
-                title={uploadSucceeded ? "Ready for analysis" : "Upload a resume first"}
+                title={
+                  !uploadSucceeded
+                    ? "Upload a resume first"
+                    : jdText.trim().length < 50
+                    ? "Job description must be at least 50 characters"
+                    : "Analyze keyword match"
+                }
               >
-                <ScanSearch className="w-5 h-5" />
-                Analyze Fit
+                {matching ? (
+                  <><Loader2 className="w-5 h-5 animate-spin" /> Analyzing…</>
+                ) : (
+                  <><ScanSearch className="w-5 h-5" /> Analyze Fit</>
+                )}
               </button>
             </div>
           </div>

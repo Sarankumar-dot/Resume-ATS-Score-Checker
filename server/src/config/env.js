@@ -11,6 +11,7 @@ const env = {
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "",
   CLIENT_URL: process.env.CLIENT_URL || "http://localhost:5173",
   NODE_ENV: process.env.NODE_ENV || "development",
+  GEMINI_API_KEY: process.env.GEMINI_API_KEY || "",
 };
 
 export default env;

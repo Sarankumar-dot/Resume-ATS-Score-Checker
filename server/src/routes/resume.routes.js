@@ -4,6 +4,7 @@
 import { Router } from "express";
 import { authenticate } from "../middleware/auth.middleware.js";
 import { upload } from "../validators/resume.validator.js";
+import { fileTypeFromBuffer } from "file-type";
 import * as resumeController from "../controllers/resume.controller.js";
 
 const router = Router();
@@ -97,6 +98,28 @@ router.post(
         .status(err.status || 400)
         .json({ error: err.message || "File upload failed." });
     });
+  },
+  async (req, res, next) => {
+    if (!req.file) {
+      return res.status(400).json({ error: "No resume file uploaded." });
+    }
+    
+    // Validate magic bytes
+    const type = await fileTypeFromBuffer(req.file.buffer);
+    
+    // DOCX files are zip archives, so file-type might identify them as zip or docx depending on structure.
+    const isValid = type && (
+      type.ext === "pdf" || 
+      type.ext === "docx" || 
+      type.ext === "zip" || 
+      type.mime === "application/pdf"
+    );
+    
+    if (!isValid) {
+      return res.status(422).json({ error: "Invalid file content detected. Only PDF and DOCX files are allowed." });
+    }
+    
+    next();
   },
   resumeController.upload
 );

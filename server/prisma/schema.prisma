@@ -22,6 +22,7 @@ model User {
 
   refresh_tokens RefreshToken[]
   resumes        Resume[]
+  analyses       Analysis[]
 
   @@map("users")
 }
@@ -51,10 +52,31 @@ model Resume {
   user_id     String
   filename    String
   parsed_text String
+  file_size   Int?
+  mimetype    String?
   uploaded_at DateTime @default(now())
 
-  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user     User       @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  analyses Analysis[]
 
   @@index([user_id])
   @@map("resumes")
+}
+
+model Analysis {
+  id               String   @id @default(uuid())
+  resume_id        String
+  user_id          String
+  jd_text          String
+  match_score      Int
+  matched_keywords String[]
+  missing_keywords String[]
+  created_at       DateTime @default(now())
+
+  resume Resume @relation(fields: [resume_id], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([resume_id])
+  @@map("analyses")
 }

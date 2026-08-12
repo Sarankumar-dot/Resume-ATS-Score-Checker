@@ -26,7 +26,13 @@ export async function uploadResume(userId, file) {
   }
 
   // 3. Persist
-  const resume = await ResumeModel.create(userId, file.originalname, text);
+  const resume = await ResumeModel.create(
+    userId,
+    file.originalname,
+    text,
+    file.size,
+    file.mimetype
+  );
 
   // 4. Return only the fields needed by the client (never the raw buffer)
   return {
