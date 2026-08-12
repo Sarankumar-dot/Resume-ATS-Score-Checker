@@ -34,7 +34,9 @@ export async function signup(req, res) {
     });
   } catch (error) {
     const status = error.statusCode || 500;
-    return res.status(status).json({ error: error.message });
+    if (status >= 500) console.error("[signup]", error);
+    const message = status < 500 ? error.message : "Something went wrong. Please try again later.";
+    return res.status(status).json({ error: message });
   }
 }
 
@@ -54,7 +56,9 @@ export async function login(req, res) {
     });
   } catch (error) {
     const status = error.statusCode || 500;
-    return res.status(status).json({ error: error.message });
+    if (status >= 500) console.error("[login]", error);
+    const message = status < 500 ? error.message : "Something went wrong. Please try again later.";
+    return res.status(status).json({ error: message });
   }
 }
 
@@ -79,7 +83,9 @@ export async function googleAuth(req, res) {
     });
   } catch (error) {
     const status = error.statusCode || 500;
-    return res.status(status).json({ error: error.message });
+    if (status >= 500) console.error("[googleAuth]", error);
+    const message = status < 500 ? error.message : "Something went wrong. Please try again later.";
+    return res.status(status).json({ error: message });
   }
 }
 
@@ -104,7 +110,9 @@ export async function refresh(req, res) {
     });
   } catch (error) {
     const status = error.statusCode || 500;
-    return res.status(status).json({ error: error.message });
+    if (status >= 500) console.error("[refresh]", error);
+    const message = status < 500 ? error.message : "Something went wrong. Please try again later.";
+    return res.status(status).json({ error: message });
   }
 }
 
@@ -138,6 +146,8 @@ export async function getMe(req, res) {
     return res.status(200).json({ user });
   } catch (error) {
     const status = error.statusCode || 500;
-    return res.status(status).json({ error: error.message });
+    if (status >= 500) console.error("[getMe]", error);
+    const message = status < 500 ? error.message : "Something went wrong. Please try again later.";
+    return res.status(status).json({ error: message });
   }
 }
